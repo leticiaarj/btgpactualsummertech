@@ -13,19 +13,7 @@ namespace ex
 
         public List<StudyParticipantDto> test()
         {
-           /* string filename = "D:/Simples.xlsx";
-            TextReader leitor = new StreamReader(filename, true);
-            int lines = 0;
-            while(leitor.Peek() != -1) 
-            {
-                lines++;
-                leitor.ReadLine();
-            }
-            leitor.Close();
-            Console.WriteLine("LINHAS: ", lines);*/
-
             var list = new List<StudyParticipantDto>();
-            //var fileStream = new FileStream("D:/teste.csv", FileMode.Open, FileAccess.Read);
             
             byte[] bin = File.ReadAllBytes("D:/simples.xlsx");
 
@@ -42,7 +30,7 @@ namespace ex
                         var linha = new StudyParticipantDto();
 
                         // 1
-                        if (int.TryParse(worksheet.Cells[row, 1].Value.ToString(), out int id))
+                        if (int.TryParse(worksheet.Cells[row, 1].Value?.ToString(), out int id))
                         {
                             linha.StudyParticipantId = (int)id;
                         }
@@ -52,10 +40,19 @@ namespace ex
                         }
 
                         //2
-                        linha.ParticipantName = worksheet.Cells[row, 2].Value.ToString().Trim();
+                        if (!string.IsNullOrEmpty(worksheet.Cells[row, 2].Value?.ToString()?.Trim()))
+                        {
+                            linha.ParticipantName = worksheet.Cells[row, 2].Value?.ToString().Trim();
+                        }
+                        else
+                        {
+                            Console.WriteLine("Impossível ler");
+                        }
+                        linha.Mail = worksheet.Cells[row, 5].Value.ToString().Trim();
+
 
                         //3
-                        if (int.TryParse(worksheet.Cells[row, 3].Value.ToString(), out int gender))
+                        if (int.TryParse(worksheet.Cells[row, 3].Value?.ToString(), out int gender))
                         {
                             linha.GenderType = (GenderType)gender;
                         }
@@ -65,7 +62,7 @@ namespace ex
                         }
                     
                         //4
-                        if(DateTime.TryParse(worksheet.Cells[row, 4].Value.ToString(), out DateTime data)) 
+                        if(DateTime.TryParseExact(worksheet.Cells[row, 4].Value?.ToString(), "dd/MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime data)) 
                         {
                             linha.BirthDate = data;
                         }
@@ -75,6 +72,14 @@ namespace ex
                         }
 
                         //5
+                        if(!string.IsNullOrEmpty(worksheet.Cells[row, 5].Value?.ToString()?.Trim())) 
+                        {
+                            linha.Mail = worksheet.Cells[row, 5].Value?.ToString().Trim();
+                        }
+                        else 
+                        {
+                            Console.WriteLine("Impossível ler");
+                        }
                         linha.Mail = worksheet.Cells[row, 5].Value.ToString().Trim();
 
                         //6
@@ -88,19 +93,46 @@ namespace ex
                         }
 
                         //7
-                        linha.Empresa = int.Parse(worksheet.Cells[row, 7].Value.ToString());
+                        if (int.TryParse(worksheet.Cells[row, 7].Value?.ToString(), out int empr))
+                        {
+                            linha.Empresa = (int)empr;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Impossível ler");
+                        }
 
                         //8
-                        linha.CodEstudo = int.Parse(worksheet.Cells[row, 8].Value.ToString());
+                        if (int.TryParse(worksheet.Cells[row, 8].Value?.ToString(), out int cod))
+                        {
+                            linha.CodEstudo = (int)cod;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Impossível ler");
+                        }
 
                         //9
-                        linha.Cpf = long.Parse(worksheet.Cells[row, 9].Value.ToString());
+                        if (int.TryParse(worksheet.Cells[row, 9].Value?.ToString(), out int cppf))
+                        {
+                            linha.Cpf = (int)cppf;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Impossível ler");
+                        }
 
                         //10
-                        linha.SalaryPercent = int.Parse(worksheet.Cells[row, 10].Value.ToString());
+                        if (int.TryParse(worksheet.Cells[row, 10].Value?.ToString(), out int sal))
+                        {
+                            linha.SalaryPercent = (int)sal;
+                        }
+                        else
+                        {
+                            Console.WriteLine("Impossível ler");
+                        }
 
                         //11
-
                         if (int.TryParse(worksheet.Cells[row, 11].Value.ToString(), out int plan))
                         {
                             linha.PlanType = (PlanType)plan;
@@ -119,11 +151,6 @@ namespace ex
                         {
                             Console.WriteLine("Impossível ler");
                         }
-
-
-
-
-
 
 
                         list.Add(linha);

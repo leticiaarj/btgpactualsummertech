@@ -3115,11 +3115,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\CursosBTGPactual\\ex\\ex.csproj",
+      "projectUniqueName": "D:\\btgarchives\\btgpactualsummertech\\ex\\ex.csproj",
       "projectName": "ex",
-      "projectPath": "D:\\CursosBTGPactual\\ex\\ex.csproj",
+      "projectPath": "D:\\btgarchives\\btgpactualsummertech\\ex\\ex.csproj",
       "packagesPath": "C:\\Users\\letic\\.nuget\\packages\\",
-      "outputPath": "D:\\CursosBTGPactual\\ex\\obj\\",
+      "outputPath": "D:\\btgarchives\\btgpactualsummertech\\ex\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\letic\\AppData\\Roaming\\NuGet\\NuGet.Config",

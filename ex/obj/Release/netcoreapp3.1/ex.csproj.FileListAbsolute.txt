@@ -1,0 +1,3 @@
+D:\CursosBTGPactual\ex\obj\Release\netcoreapp3.1\ex.csprojAssemblyReference.cache
+D:\CursosBTGPactual\ex\obj\Release\netcoreapp3.1\ex.AssemblyInfoInputs.cache
+D:\CursosBTGPactual\ex\obj\Release\netcoreapp3.1\ex.AssemblyInfo.cs
